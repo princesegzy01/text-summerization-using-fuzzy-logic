@@ -4,7 +4,7 @@ This is an implementation of a text summeration from a txt file using fuzzy logi
 
 ## Language & Package
 * python 3.6
-* skfuzzy from scipy
+* skfuzzy from sci-kit fuzzy
 * 
 
 
