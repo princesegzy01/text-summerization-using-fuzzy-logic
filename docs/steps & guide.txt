@@ -1,0 +1,28 @@
+Feature list
+1. title word
+2. sentence length
+3. sentence_location
+4. numerical_data
+5. thematic key
+6. proper_noun
+7. sentence_similarity
+8. term_weight
+
+themeatic word : 10
+compression rate : 20
+
+universe = crisp value betwen 0 and 1 step of 0001
+
+Antecedent is the rule
+result = autoMembershipfunction(3) // divide it into 3 i.e Good average poor
+
+
+result = triangular membership function (universe, a,b,b)
+
+
+Rule Consequent Triangular membership fuction
+low = fuzzy.trimf(result, [0.000,0.30,0.500])
+medium = fuzzy.trimf(result, [0.300,0.500,0.700])
+high = fuzzy.trimf(result, [0.500,1.0,1.0])
+
+

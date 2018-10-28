@@ -112,7 +112,7 @@ def get_sentence_numerical_data(sentences):
 def proper_noun_feature(sentences):
 
     proper_noun_result = []
-
+    
     # loop through senctence in each sentences
     for sentence in sentences:
 
@@ -122,7 +122,10 @@ def proper_noun_feature(sentences):
 
         nos_nnp_in_sentence = 0
 
+
         for k in pos_title:
+
+
             if k[1] == "NNP":
                 nos_nnp_in_sentence = nos_nnp_in_sentence + 1
 
@@ -180,7 +183,7 @@ def thematic_keyword(title, sentences):
 
     # max_keyword_value = res_tuple[1]
 
-    res_tuple = result[-20:]
+    res_tuple = result[-10:]
     
     #print(res_tuple)
 
@@ -623,17 +626,16 @@ def starter ():
     term_weight_feature_value = termWeight(sentences_list)
 
     sentences_feature_list = []
-    
-   
-    sentence_features_usage = []
 
     fuzzy_list = []
 
     sentence_total_object_result = []
 
     indexCounter = 0
+
     for title_word,sentence_length,sentence_location, numerical_data, thematic_key, proper_noun,sentence_similarity,term_weight in zip(title_word_feature_value, sentence_length_feature_value, sentence_location_feature_value, numerical_data_feature_value, thematic_keyword_feature_value, proper_noun_feature_value,sentence_similarity_feature_value, term_weight_feature_value) : 
     
+
         sin_feature_obj = {
             'title_word': title_word,
             'sentence_length': sentence_length,
@@ -643,37 +645,36 @@ def starter ():
             'proper_noun': proper_noun,
             'sentence_similarity': sentence_similarity,
             'term_weight': term_weight,
-            }
+        }
         
         result = fuzzy_rules(sin_feature_obj)
 
-        result_object = {"sn" : indexCounter, "value" : result}
+        # result_object = {"sn" : indexCounter, "value" : result}
+        # fuzzy_list.append(result_object)
 
+        result_object = (indexCounter, result)
         fuzzy_list.append(result_object)
-
+        
         indexCounter = indexCounter + 1
-         
-    #print("Fuzzy list is : ")
-    #print(fuzzy_list)
-
+   
 
     # use 20%  as compression ratio
     total_sentence = len(detected_sentences)
     compressionNumber = total_sentence * 0.20
     compressionNumber = int(compressionNumber)
 
-    for i in range(0, compressionNumber-1):
-        print(detected_sentences[fuzzy_list[i]['sn']])
 
-       
-    # rules_definition(sentence_total_object_result)
-    
-    
-    # rule1 = np.fmax(temp_in['hot'], hum_in['low'])
+    #  sort the result according to the fuzzy result
+    #  and select up to compression rate
+    result = sorted(fuzzy_list, key=lambda t: t[1], reverse=True)[:compressionNumber]
+    result2 = sorted(result, key=lambda t: t[0])
 
-    # x_temp = np.asarray([title_word_feature_value[0], sentence_length_feature_value[0], sentence_location_feature_value[0], numerical_data_feature_value[0], thematic_keyword_feature_value[0], proper_noun_feature_value[0],sentence_similarity_feature_value[0], term_weight_feature_value[0]])
-    # pprint(sentences_feature_list)
-    # Generate fuzzy membership functions
+
+    for index in result2:
+        print(detected_sentences[index[0]])
+
+    # for i in range(0, compressionNumber-1):
+        # print(detected_sentences[fuzzy_list[i]['sn']])
 
 
 starter()

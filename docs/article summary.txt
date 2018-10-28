@@ -1,0 +1,5 @@
+Blockchains are digital organisms.
+As organisms evolve through changes in their DNA, blockchain protocols evolve through changes in their code.
+And like biological organisms, the most adaptive blockchains will be the ones that survive and thrive.
+So what makes for a strong evolutionary process in a blockchain?
+Forking is an important mechanism that is becoming more common.
