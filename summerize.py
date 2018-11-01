@@ -113,6 +113,7 @@ def proper_noun_feature(sentences):
 
     proper_noun_result = []
     
+
     # loop through senctence in each sentences
     for sentence in sentences:
 
@@ -122,12 +123,21 @@ def proper_noun_feature(sentences):
 
         nos_nnp_in_sentence = 0
 
+        # custom
+        #testPOS = []
 
         for k in pos_title:
+            
+
+            # custom print
+            # testPOS.append(k[1])
 
 
             if k[1] == "NNP":
                 nos_nnp_in_sentence = nos_nnp_in_sentence + 1
+
+        # CUSTOM
+        # print(testPOS)
 
 
         result = nos_nnp_in_sentence / len(sentence_tokenize)
@@ -635,6 +645,8 @@ def starter ():
 
     for title_word,sentence_length,sentence_location, numerical_data, thematic_key, proper_noun,sentence_similarity,term_weight in zip(title_word_feature_value, sentence_length_feature_value, sentence_location_feature_value, numerical_data_feature_value, thematic_keyword_feature_value, proper_noun_feature_value,sentence_similarity_feature_value, term_weight_feature_value) : 
     
+        # custom
+        #print(title_word,sentence_length,sentence_location, numerical_data, thematic_key, proper_noun,sentence_similarity,term_weight)
 
         sin_feature_obj = {
             'title_word': title_word,
@@ -651,6 +663,9 @@ def starter ():
 
         # result_object = {"sn" : indexCounter, "value" : result}
         # fuzzy_list.append(result_object)
+
+        # custom
+        #print(result)
 
         result_object = (indexCounter, result)
         fuzzy_list.append(result_object)
